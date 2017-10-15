@@ -10,16 +10,17 @@ public class RecursiveBacktrackerGenerator implements MazeGenerator {
 	@Override
 	public void generateMaze(Maze maze) {
 		// TODO Auto-generated method stub
+		
+		Random ran = new Random();
+		Cell current = maze.entrance;
+		ArrayList<Cell> visitedCells= new ArrayList<Cell>();
+		visitedCells.add(current);
 
+		///Bactraker algorithm for perfect normal maze 
 		if(maze.type==Maze.NORMAL){
-			
-			Random ran = new Random();
-			Cell current = maze.entrance;
-			ArrayList<Cell> visitedCells= new ArrayList<Cell>();
-			
-			visitedCells.add(current);
 			int[] fourDirect = {maze.EAST, maze.NORTH, maze.SOUTH, maze.WEST};
 			
+			///Continue creating maze until every cell is visited
 			while(visitedCells.size() != (maze.sizeR*maze.sizeC)){
 				
 				
@@ -46,8 +47,6 @@ public class RecursiveBacktrackerGenerator implements MazeGenerator {
 					}
 				}
 				
-				
-				
 				/////if so go back one by one
 				if(deadEnd){
 					for(int i=visitedCells.size()-2;i>=0;i--){
@@ -67,10 +66,8 @@ public class RecursiveBacktrackerGenerator implements MazeGenerator {
 					}
 					
 				}
-				
-				
-				Cell d = null;
-				
+							
+				/////if Cell in a direction not visited yet then make a path 
 				for(int i =0; i<fourDirect.length; i++){
 					if(current.neigh[fourDirect[i]] != null){
 						if(!visitedCells.contains(current.neigh[fourDirect[i]])){
@@ -87,18 +84,14 @@ public class RecursiveBacktrackerGenerator implements MazeGenerator {
 			
 		}
 		
-		
+		////Backtracker algorithm for perfect tunnel maze
 		if(maze.type==Maze.TUNNEL){
-			Random ran = new Random();
-			Cell current = maze.entrance;
-			ArrayList<Cell> visitedCells= new ArrayList<Cell>();
 			
-			visitedCells.add(current);
 			int[] fourDirect = {maze.EAST, maze.NORTH, maze.SOUTH, maze.WEST};
 			
+			///continue create maze until every cells is visited
 			while(visitedCells.size() != (maze.sizeR*maze.sizeC)){
-				
-				
+
 				boolean deadEnd=true;
 				
 				//// shuffle direction
@@ -151,9 +144,8 @@ public class RecursiveBacktrackerGenerator implements MazeGenerator {
 					
 				}
 				
-				
-				Cell d = null;
-				
+
+				/////if Cell in a direction not visited yet then make a path 
 				for(int i =0; i<fourDirect.length; i++){
 					if(current.neigh[fourDirect[i]] != null){
 						if(!visitedCells.contains(current.neigh[fourDirect[i]])){
@@ -170,16 +162,13 @@ public class RecursiveBacktrackerGenerator implements MazeGenerator {
 			
 		}
 		
+		////Backtracker algorithm for perfect Hex maze
 		if(maze.type==Maze.HEX){
-			Random ran = new Random();
-			Cell current = maze.entrance;
-			ArrayList<Cell> visitedCells= new ArrayList<Cell>();
 			
-			visitedCells.add(current);
-			
+			////continue making maze until every cell is visited
 			while(visitedCells.size() != (maze.sizeR*maze.sizeC)){
 				int[] sixDirect = {maze.NORTH, maze.NORTHEAST,maze.NORTHWEST, maze.SOUTH, maze.SOUTHEAST, maze.SOUTHWEST};
-				boolean move=true,deadEnd=true;
+				boolean deadEnd=true;
 				
 				///shuffle direction
 				for (int i = 0; i < sixDirect.length; i++) {
@@ -219,8 +208,7 @@ public class RecursiveBacktrackerGenerator implements MazeGenerator {
 					
 				}
 				
-				Cell d = null;
-				
+				/////if Cell in a direction not visited yet then make a path 
 				for(int i =0; i<sixDirect.length; i++){
 					if(current.neigh[sixDirect[i]] != null){
 						if(!visitedCells.contains(current.neigh[sixDirect[i]])){

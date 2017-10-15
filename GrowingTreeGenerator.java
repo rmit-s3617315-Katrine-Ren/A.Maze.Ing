@@ -22,15 +22,17 @@ public class GrowingTreeGenerator implements MazeGenerator {
 		Z.add(start);
 		visitedCells.add(start);
 		
+		///Growing tree algorithm for perfect normal maze 
 		if(maze.type==Maze.NORMAL){
 			
+			///continue making maze while Z is not empty
 			while(!Z.isEmpty()){
 				int[] fourDirect = {maze.EAST, maze.NORTH, maze.SOUTH, maze.WEST};
 				
 				Cell b = null;
 				float chance = ran.nextFloat();
 				
-				////shuffle   OK
+				////shuffle direction
 				for (int i = fourDirect.length-1; i>0;i--) {
 					 int ranVal = ran.nextInt(i+1);
 					 int ranEle = fourDirect[ranVal];
@@ -39,6 +41,7 @@ public class GrowingTreeGenerator implements MazeGenerator {
 					 
 				 }
 				
+				////use pick most recent algorithm 90% of the time
 				if(chance > threshold){
 					
 					for(int i=visitedCells.size()-1;i>=0;i--){
@@ -48,16 +51,10 @@ public class GrowingTreeGenerator implements MazeGenerator {
 						}
 						
 					}
-					/////////////////////
 					
-					
-					
-				}else{///////////emulate prism
+				}else{///////////else pick random cell
 					int x=0;
 					boolean notLast=true;
-					
-					
-					////random cell in Z
 					
 						int  ranZ = ran.nextInt(Z.size());
 						for(Cell obj : Z){
@@ -71,7 +68,7 @@ public class GrowingTreeGenerator implements MazeGenerator {
 				
 				boolean deadEnd=true;
 				
-				/////////chk if b has unvisit neig
+				/////////chk if b has unvisited neigbours, if no then remove b from Z
 				for(int i =0; i<fourDirect.length; i++){
 					if(b.neigh[fourDirect[i]] != null){
 						if(!visitedCells.contains(b.neigh[fourDirect[i]])){
@@ -80,8 +77,6 @@ public class GrowingTreeGenerator implements MazeGenerator {
 						}
 					}
 				}
-				
-				
 				if(deadEnd){
 					Z.remove(b);
 				}else{
@@ -104,6 +99,7 @@ public class GrowingTreeGenerator implements MazeGenerator {
 		
 		}
 		
+		////Growing tree algorithm for perfect Hex maze
 		if(maze.type==Maze.HEX){
 			while(!Z.isEmpty()){
 				int[] sixDirect = {maze.NORTH, maze.NORTHEAST,maze.NORTHWEST, maze.SOUTH, maze.SOUTHEAST, maze.SOUTHWEST};
@@ -111,7 +107,7 @@ public class GrowingTreeGenerator implements MazeGenerator {
 				Cell b = null;
 				float chance = ran.nextFloat();
 				
-				////shuffle   OK
+				////shuffle direction
 				for (int i = sixDirect.length-1; i>0;i--) {
 					 int ranVal = ran.nextInt(i+1);
 					 int ranEle = sixDirect[ranVal];
@@ -120,6 +116,7 @@ public class GrowingTreeGenerator implements MazeGenerator {
 					 
 				 }
 				
+				///use pick most recent algorithm 90% of the time
 				if(chance > threshold){
 					for(int i=visitedCells.size()-1;i>=0;i--){
 						if(Z.contains(visitedCells.get(i))){
@@ -129,7 +126,7 @@ public class GrowingTreeGenerator implements MazeGenerator {
 						
 					}
 					
-				}else{
+				}else{///else pick random cell
 					int x=0;
 					boolean notLast=true;
 					
@@ -148,7 +145,7 @@ public class GrowingTreeGenerator implements MazeGenerator {
 				
 				boolean deadEnd=true;
 				
-				/////////chk if b has unvisit neig
+				/////////chk if b has unvisited neigbours, if not then remove b from Z
 				for(int i =0; i<sixDirect.length; i++){
 					if(b.neigh[sixDirect[i]] != null){
 						if(!visitedCells.contains(b.neigh[sixDirect[i]])){

@@ -25,9 +25,11 @@ public class BiDirectionalRecursiveBacktrackerSolver implements MazeSolver {
 		visitedCells.add(current);
 		maze.drawFtPrt(current);
 		
+		///Recursive algorithm solver for perfect normal maze 
 		if(maze.type==Maze.NORMAL){
 			int[] fourDirect = {maze.EAST, maze.NORTH, maze.SOUTH, maze.WEST};
 			
+			///continue solving until managed to reach the exit
 			while(current != maze.exit){
 				
 				//// shuffle direction
@@ -39,14 +41,6 @@ public class BiDirectionalRecursiveBacktrackerSolver implements MazeSolver {
 					 
 				 }
 				 
-				 int path=0;
-				 
-				 for(int i =0; i<fourDirect.length; i++){
-					 if(current.wall[fourDirect[i]].present == false){
-						 path++;
-						 
-					 } 
-				 }
 				 
 				 boolean deadEnd=true;
 				 
@@ -85,7 +79,7 @@ public class BiDirectionalRecursiveBacktrackerSolver implements MazeSolver {
 					
 				}
 				 
-				 
+				 ///find unvisited cells and go there if there are no walls
 					 for(int i =0; i<fourDirect.length; i++){
 						if(current.neigh[fourDirect[i]] != null){
 							if(!visitedCells.contains(current.neigh[fourDirect[i]])){
@@ -101,14 +95,17 @@ public class BiDirectionalRecursiveBacktrackerSolver implements MazeSolver {
 						}
 					 }
 				 
-			}///////// end of while
+			}
 			
+			///since able to reach exit, maze is solved
 			solved = true;
-		}///// end of if maze type normal
+		}
 		
+		///Recursive algorithm solver for perfect tunnel maze 
 		if(maze.type==Maze.TUNNEL){
 			int[] fourDirect = {maze.EAST, maze.NORTH, maze.SOUTH, maze.WEST};
 			
+			///continue solving until able to reach exit
 			while(current != maze.exit){
 
 				//// shuffle direction
@@ -166,7 +163,7 @@ public class BiDirectionalRecursiveBacktrackerSolver implements MazeSolver {
 						
 					}
 					 
-					 
+					 ///move to unvisited cells if there is no wall
 						 for(int i =0; i<fourDirect.length; i++){
 							if(current.neigh[fourDirect[i]] != null){
 								if(!visitedCells.contains(current.neigh[fourDirect[i]])){
@@ -187,6 +184,7 @@ public class BiDirectionalRecursiveBacktrackerSolver implements MazeSolver {
 			
 		}///end of if maze
 		
+		///Recursive algorithm solver for perfect hex maze 
 		if(maze.type==Maze.HEX){
 			int[] sixDirect = {maze.NORTH, maze.NORTHEAST,maze.NORTHWEST, maze.SOUTH, maze.SOUTHEAST, maze.SOUTHWEST};
 			
@@ -201,14 +199,6 @@ public class BiDirectionalRecursiveBacktrackerSolver implements MazeSolver {
 					 
 				 }
 				 
-				 int path=0;
-				 
-				 for(int i =0; i<sixDirect.length; i++){
-					 if(current.wall[sixDirect[i]].present == false){
-						 path++;
-						 
-					 } 
-				 }
 				 
 				 boolean deadEnd=true;
 				 
@@ -247,7 +237,7 @@ public class BiDirectionalRecursiveBacktrackerSolver implements MazeSolver {
 					
 				}
 				 
-				 
+				 ///move to unvisited cells if there is no wall
 					 for(int i =0; i<sixDirect.length; i++){
 						if(current.neigh[sixDirect[i]] != null){
 							if(!visitedCells.contains(current.neigh[sixDirect[i]])){
@@ -264,6 +254,8 @@ public class BiDirectionalRecursiveBacktrackerSolver implements MazeSolver {
 					 }
 				
 			}///end of while
+			
+			///Since able to reach exit, maze is solved
 			solved=true;
 			
 		}///end of if

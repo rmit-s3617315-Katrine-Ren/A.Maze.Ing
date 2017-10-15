@@ -11,6 +11,7 @@ public class ModifiedPrimsGenerator implements MazeGenerator {
 	public void generateMaze(Maze maze) {
 		// TODO Auto-generated method stub
 		
+		////Prism algorithm for perfect normal maze
 		if(maze.type==Maze.NORMAL){
 			
 			Set<Cell> F = new HashSet<Cell>();
@@ -21,6 +22,7 @@ public class ModifiedPrimsGenerator implements MazeGenerator {
 			
 			Z.add(start);
 			
+			///add neigbouring cells to F 
 			if(start.neigh[maze.NORTH] != null)
 				F.add(start.neigh[maze.NORTH]);
 			
@@ -33,11 +35,14 @@ public class ModifiedPrimsGenerator implements MazeGenerator {
 			if(start.neigh[maze.WEST] != null)
 				F.add(start.neigh[maze.WEST]);
 			
+			///continue making maze until Z is as bis as the maze size
 			while(Z.size() != (maze.sizeR*maze.sizeC)){
 				
 				Cell c = null;
 				int  ranC = ran.nextInt(F.size());
 				int x=0;
+				
+				///choose random cells in F
 				for(Cell obj : F){
 					if(x==ranC){
 						c=obj;
@@ -48,15 +53,16 @@ public class ModifiedPrimsGenerator implements MazeGenerator {
 				
 				F.remove(c);
 				
-				Cell d = null;
+				Cell b = null;
 				
 				int[] fourDirect = {maze.EAST, maze.NORTH, maze.SOUTH, maze.WEST};
 				
+				////find cell which is neigbour of c and in Z, then make a path 
 				for(int i =0; i<fourDirect.length; i++){
 					if(c.neigh[fourDirect[i]] != null){
 						for (Cell obj : Z){
 							if(c.neigh[fourDirect[i]].equals(obj)){
-								d = c.neigh[fourDirect[i]];
+								b = c.neigh[fourDirect[i]];
 								c.wall[fourDirect[i]].present = false;
 								break;
 								
@@ -64,14 +70,17 @@ public class ModifiedPrimsGenerator implements MazeGenerator {
 							
 						}
 						
-					}if (d != null){
+					}if (b != null){
 						break;
 					}
 					
 				}
 				
+				///add c into Z
 				Z.add(c);
 				
+				////then add the noigbouring cells of c into F if they are not 
+				///already in Z or F 
 				if(c.neigh[maze.NORTH] != null){
 					boolean inZ = false;
 					for (Cell obj : Z){
@@ -133,6 +142,7 @@ public class ModifiedPrimsGenerator implements MazeGenerator {
 			
 		}
 		
+		////Prism algorithm for perfect hex maze
 		if(maze.type==Maze.HEX){
 			Set<Cell> F = new HashSet<Cell>();
 			Set<Cell> Z = new HashSet<Cell>();
@@ -140,6 +150,7 @@ public class ModifiedPrimsGenerator implements MazeGenerator {
 			Random ran = new Random();
 			Cell start = maze.entrance;
 			
+			///add start to Z and all neigbouring cells to F
 			Z.add(start);
 			
 			if(start.neigh[maze.NORTH] != null)
@@ -160,10 +171,13 @@ public class ModifiedPrimsGenerator implements MazeGenerator {
 			if(start.neigh[maze.SOUTHWEST] != null)
 				F.add(start.neigh[maze.SOUTHWEST]);
 			
+			///keep making maze until maze size wanted 
 			while(Z.size() != (maze.sizeR*maze.sizeC)){
 				Cell c = null;
 				int  ranC = ran.nextInt(F.size());
 				int x=0;
+				
+				///choose random cell in F as c
 				for(Cell obj : F){
 					if(x==ranC){
 						c=obj;
@@ -174,15 +188,16 @@ public class ModifiedPrimsGenerator implements MazeGenerator {
 				
 				F.remove(c);
 				
-				Cell d = null;
+				Cell b = null;
 				
 				int[] sixDirect = {maze.NORTH, maze.NORTHEAST,maze.NORTHWEST, maze.SOUTH, maze.SOUTHEAST, maze.SOUTHWEST};
 				
+				///find cell which is neigbour of c and in Z, then make a path 
 				for(int i =0; i<sixDirect.length; i++){
 					if(c.neigh[sixDirect[i]] != null){
 						for (Cell obj : Z){
 							if(c.neigh[sixDirect[i]].equals(obj)){
-								d = c.neigh[sixDirect[i]];
+								b = c.neigh[sixDirect[i]];
 								c.wall[sixDirect[i]].present = false;
 								break;
 								
@@ -190,14 +205,16 @@ public class ModifiedPrimsGenerator implements MazeGenerator {
 							
 						}
 						
-					}if (d != null){
+					}if (b != null){
 						break;
 					}
 					
 				}
 				
+				///add c into Z
 				Z.add(c);
 				
+				///add neigbouring cell to c into F if they are not already in Z or F
 				if(c.neigh[maze.NORTH] != null){
 					boolean inZ = false;
 					for (Cell obj : Z){
