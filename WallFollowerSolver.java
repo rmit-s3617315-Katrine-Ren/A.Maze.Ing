@@ -21,7 +21,6 @@ public class WallFollowerSolver implements MazeSolver {
     Cell current;
     Random ran = new Random();
     int currentDir;
-    ArrayList<Cell> visitedCells= new ArrayList<Cell>();
 
     int[] fourDirect = {Maze.EAST, Maze.NORTH, Maze.WEST, Maze.SOUTH};
     int[] sixDirect = { Maze.NORTHEAST,Maze.NORTH,Maze.NORTHWEST,Maze.SOUTHWEST,Maze.SOUTH, Maze.SOUTHEAST};
@@ -30,7 +29,6 @@ public class WallFollowerSolver implements MazeSolver {
     public void solveMaze(Maze maze) {
         solved = false;
         current = maze.entrance;
-        visitedCells.add(current);
         maze.drawFtPrt(current);
 
         
@@ -38,15 +36,12 @@ public class WallFollowerSolver implements MazeSolver {
         if(maze.type==Maze.NORMAL){
 
 			
-			//start first step toward a random direction
+	    //start first step toward a random direction
             currentDir = Shuffle(maze);
-            System.out.println("Finish shuffling");
+          
 
         //Have we reahced the end?
         while(current != maze.exit){
-        	
-        	System.out.println("Check if reach the end");
-        	
 
             //Is there no left wall?
 
@@ -54,7 +49,7 @@ public class WallFollowerSolver implements MazeSolver {
         	if(noLeftWall(currentDir)==true){
         		rotateLeft(currentDir);
         		stepForward(maze,currentDir);
-        		System.out.println("Turn Left");
+        	
         	}
 
         	else{
@@ -63,13 +58,13 @@ public class WallFollowerSolver implements MazeSolver {
         		//if true, step forward to current direction
         		if(noFrontWall(currentDir) == true){
         			stepForward(maze,currentDir);
-            		System.out.println("Step Forward");
+            		
 
         		}
         		//if false, turn right/90 degree CW
         		else{
         			rotateRight(currentDir);
-        			System.out.println("Turn Right");
+        			
         		}
                
         	}
@@ -77,7 +72,7 @@ public class WallFollowerSolver implements MazeSolver {
         }
         ///since able to reach exit, maze is solved
 			solved = true;
-			System.out.println("I escape!");
+			
 		}//end of NORMAL Maze Solver
 
 
@@ -130,8 +125,6 @@ public class WallFollowerSolver implements MazeSolver {
 
      /* Wall Follower algorithm solver for perfect Hexgon maze */
      if(maze.type == Maze.HEX){
-
-        
 
         //start first step toward a random direction
         currentDir = Shuffle(maze);
@@ -474,8 +467,7 @@ public class WallFollowerSolver implements MazeSolver {
 
             current = current.neigh[cDirection]; 
             maze.drawFtPrt(current);
-        visitedCells.add(current);
-        steps++;
+            steps++;
 
     }
 
