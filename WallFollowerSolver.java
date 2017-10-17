@@ -90,7 +90,7 @@ public class WallFollowerSolver implements MazeSolver {
             ////if current is a tunnel move to its destination
             if(current.tunnelTo != null){
                 current = current.tunnelTo;
-                visitedCells.add(current);
+                
                 maze.drawFtPrt(current);    
             }
 
