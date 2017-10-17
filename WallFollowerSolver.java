@@ -19,6 +19,10 @@ public class WallFollowerSolver implements MazeSolver {
 	int steps=0;
 	boolean solved;
 	Cell current;
+    int currentDir;
+
+    int[] fourDirect = {maze.EAST, maze.NORTH, maze.WEST, maze.SOUTH};
+    int[] sixDirect = { maze.NORTHEAST,maze.NORTH,maze.NORTHWEST,maze.SOUTHWEST,maze.SOUTH, maze.SOUTHEAST};
 
 	@Override
 	public void solveMaze(Maze maze) {
@@ -32,10 +36,10 @@ public class WallFollowerSolver implements MazeSolver {
 		/* Wall Follower algorithm solver for perfect normal maze */
 		if(maze.type==Maze.NORMAL){
 
-			int[] fourDirect = {maze.EAST, maze.NORTH, maze.WEST, maze.SOUTH};
+			//int[] fourDirect = {maze.EAST, maze.NORTH, maze.WEST, maze.SOUTH};
 
 			//start first step toward a random direction
-            int currentDir = Shuffle(maze);
+            currentDir = Shuffle(maze);
 
         //Have we reahced the end?
         while(current != maze.exit){
@@ -71,10 +75,10 @@ public class WallFollowerSolver implements MazeSolver {
        /* Wall Follower algorithm solver for perfect tunnel maze */
 		if(maze.type==Maze.TUNNEL){
 
-			int[] fourDirect = {maze.EAST, maze.NORTH, maze.WEST, maze.SOUTH};
+			//int[] fourDirect = {maze.EAST, maze.NORTH, maze.WEST, maze.SOUTH};
 
 			//start first step toward a random direction
-            int currentDir = Shuffle(maze);
+            currentDir = Shuffle(maze);
 
         //Have we reahced the end?
         while(current != maze.exit){
@@ -118,10 +122,10 @@ public class WallFollowerSolver implements MazeSolver {
 	 /* Wall Follower algorithm solver for perfect Hexgon maze */
 	 if(maze.type == Maze.HEX){
 
-	 	int[] sixDirect = { maze.NORTHEAST,maze.NORTH,maze.NORTHWEST,maze.SOUTHWEST,maze.SOUTH, maze.SOUTHEAST};
+	 	//int[] sixDirect = { maze.NORTHEAST,maze.NORTH,maze.NORTHWEST,maze.SOUTHWEST,maze.SOUTH, maze.SOUTHEAST};
 
 	 	//start first step toward a random direction
-        int currentDir = Shuffle(maze);
+        currentDir = Shuffle(maze);
 
         while(current != maze.exit){
 
