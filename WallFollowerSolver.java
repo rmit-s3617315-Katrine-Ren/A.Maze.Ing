@@ -37,39 +37,48 @@ public class WallFollowerSolver implements MazeSolver {
         /* Wall Follower algorithm solver for perfect normal maze */
         if(maze.type==Maze.NORMAL){
 
-            
-            //start first step toward a random direction
+			
+			//start first step toward a random direction
             currentDir = Shuffle(maze);
+            System.out.println("Finish shuffling");
 
         //Have we reahced the end?
         while(current != maze.exit){
+        	
+        	System.out.println("Check if reach the end");
+        	
 
             //Is there no left wall?
 
             //if ture, turn left and step to left-side cell
-            if(noLeftWall(currentDir)==true){
-                rotateLeft(currentDir);
-                stepForward(maze,currentDir);
-            }
+        	if(noLeftWall(currentDir)==true){
+        		rotateLeft(currentDir);
+        		stepForward(maze,currentDir);
+        		System.out.println("Turn Left");
+        	}
 
-            else{
-                // left wall exist. Is there no front wall? 
+        	else{
+        		// left wall exist. Is there no front wall? 
 
-                //if true, step forward to current direction
-                if(noFrontWall(currentDir) == true){
-                    stepForward(maze,currentDir);
-                }
-                //if false, turn right/90 degree CW
-                else{
-                    rotateRight(currentDir);
-                }
+        		//if true, step forward to current direction
+        		if(noFrontWall(currentDir) == true){
+        			stepForward(maze,currentDir);
+            		System.out.println("Step Forward");
+
+        		}
+        		//if false, turn right/90 degree CW
+        		else{
+        			rotateRight(currentDir);
+        			System.out.println("Turn Right");
+        		}
                
-            }
+        	}
 
         }
         ///since able to reach exit, maze is solved
-            solved = true;
-        }//end of NORMAL Maze Solver
+			solved = true;
+			System.out.println("I escape!");
+		}//end of NORMAL Maze Solver
 
 
        /* Wall Follower algorithm solver for perfect tunnel maze */
