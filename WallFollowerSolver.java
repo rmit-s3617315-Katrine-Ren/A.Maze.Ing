@@ -174,10 +174,10 @@ public class WallFollowerSolver implements MazeSolver {
 
         }
 
-
+       solved = true;
      }//end of HEX maze Solver
 
-
+     
     } // end of solveMaze()
     
     
