@@ -141,7 +141,7 @@ public class WallFollowerSolver implements MazeSolver {
         	else if(noTopLeftWall() == true){
 
         		//rotate to top-left and step to next cell
-        		rotateTopRight(currentDir);
+        		rotateTopLeft(currentDir);
         		stepForward(currentDir);
 
         	}
