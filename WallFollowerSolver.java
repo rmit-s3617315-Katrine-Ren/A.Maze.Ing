@@ -361,35 +361,35 @@ public class WallFollowerSolver implements MazeSolver {
     //function for Square maze
     public void rotateLeft(int cDirection) {
 
-        if(cDirection == (fourDirect[0])){
-            cDirection = fourDirect[1]; 
-        }
-        else if(cDirection == (fourDirect[1])){
-            cDirection = fourDirect[2];
-        }
-        else if(cDirection == (fourDirect[2])){
-            cDirection = fourDirect[3];
-        }
-        else if(cDirection == (fourDirect[3])){
-            cDirection = fourDirect[0];
-        }
+    	if(cDirection == (fourDirect[0])){
+    		currentDir = fourDirect[1];	
+    	}
+    	else if(cDirection == (fourDirect[1])){
+    		currentDir = fourDirect[2];
+    	}
+    	else if(cDirection == (fourDirect[2])){
+    		currentDir = fourDirect[3];
+    	}
+    	else if(cDirection == (fourDirect[3])){
+    		currentDir = fourDirect[0];
+    	}
 
     }
 
     public void rotateRight(int cDirection){
 
-        if(cDirection == (fourDirect[0])){
-            cDirection = fourDirect[3]; 
-        }
-        else if(cDirection == (fourDirect[1])){
-            cDirection = fourDirect[0];
-        }
-        else if(cDirection == (fourDirect[2])){
-            cDirection = fourDirect[1];
-        }
-        else if(cDirection == (fourDirect[3])){
-            cDirection = fourDirect[2];
-        }
+    	if(cDirection == fourDirect[0]){
+    		currentDir = fourDirect[3];	
+    	}
+    	else if(cDirection == fourDirect[1]){
+    		currentDir = fourDirect[0];
+    	}
+    	else if(cDirection == fourDirect[2]){
+    		currentDir = fourDirect[1];
+    	}
+    	else if(cDirection == fourDirect[3]){
+    		currentDir = fourDirect[2];
+    	}
 
     }
 
@@ -397,73 +397,74 @@ public class WallFollowerSolver implements MazeSolver {
 
     public void rotateBottomLeft(int cDirection){
 
-        if(cDirection == (sixDirect[0])) {
-            cDirection = sixDirect[2];
-         }
-         else if(cDirection == (sixDirect[1])){
-            cDirection = sixDirect[3];
-        }
-        else if(cDirection == (sixDirect[2])){
-            cDirection = sixDirect[4];
+    	if(cDirection == sixDirect[0]) {
+    	 	currentDir = sixDirect[2];
+    	 }
+    	 else if(cDirection == sixDirect[1]){
+    	 	currentDir = sixDirect[3];
+    	}
+    	else if(cDirection == sixDirect[2]){
+    	 	currentDir = sixDirect[4];
 
-        }else if(cDirection == (sixDirect[3])){
-            cDirection = sixDirect[5];
+    	}else if(cDirection == sixDirect[3]){
+    	 	currentDir = sixDirect[5];
 
-        }else if(cDirection == (sixDirect[4])){
-            cDirection = sixDirect[0];
+    	}else if(cDirection == sixDirect[4]){
+    	 	currentDir = sixDirect[0];
 
-        }else if(cDirection == (sixDirect[5])){
-            cDirection = sixDirect[1];
-        }
+    	}else if(cDirection == sixDirect[5]){
+    		currentDir = sixDirect[1];
+    	}
 
     }
 
 
     public void rotateTopLeft(int cDirection){
 
-        if(cDirection == (sixDirect[0])) {
-            cDirection = sixDirect[1];
-         }
-         else if(cDirection == (sixDirect[1])){
-            cDirection = sixDirect[2];
-        }
-        else if(cDirection == (sixDirect[2])){
-            cDirection = sixDirect[3];
+    	if(cDirection == sixDirect[0]) {
+    		currentDir = sixDirect[1];
+    	 }
+    	 else if(cDirection == sixDirect[1]){
+    		 currentDir = sixDirect[2];
+    	}
+    	else if(cDirection == sixDirect[2]){
+    		currentDir = sixDirect[3];
 
-        }else if(cDirection == (sixDirect[3])){
-            cDirection = sixDirect[4];
+    	}else if(cDirection == sixDirect[3]){
+    		currentDir = sixDirect[4];
 
-        }else if(cDirection == (sixDirect[4])){
-            cDirection = sixDirect[5];
+    	}else if(cDirection == (sixDirect[4])){
+    		currentDir = sixDirect[5];
 
-        }else if(cDirection == (sixDirect[5])){
-            cDirection = sixDirect[0];
-        }
+    	}else if(cDirection == (sixDirect[5])){
+    		currentDir = sixDirect[0];
+    	}
 
     }
 
     public void rotateTopRight(int cDirection){
 
-        if(cDirection == (sixDirect[0])) {
-            cDirection = sixDirect[5];
-         }
-         else if(cDirection == (sixDirect[1])){
-            cDirection = sixDirect[0];
-        }
-        else if(cDirection == (sixDirect[2])){
-            cDirection = sixDirect[1];
+    	if(cDirection == (sixDirect[0])) {
+    		currentDir = sixDirect[5];
+    	 }
+    	 else if(cDirection == (sixDirect[1])){
+    		 currentDir = sixDirect[0];
+    	}
+    	else if(cDirection == (sixDirect[2])){
+    		currentDir = sixDirect[1];
 
-        }else if(cDirection == (sixDirect[3])){
-            cDirection = sixDirect[2];
+    	}else if(cDirection == (sixDirect[3])){
+    		currentDir = sixDirect[2];
 
-        }else if(cDirection == (sixDirect[4])){
-            cDirection = sixDirect[3];
+    	}else if(cDirection == (sixDirect[4])){
+    		currentDir = sixDirect[3];
 
-        }else if(cDirection == (sixDirect[5])){
-            cDirection = sixDirect[4];
-        }
+    	}else if(cDirection == (sixDirect[5])){
+    		currentDir = sixDirect[4];
+    	}
 
     }
+
 
 
 
